@@ -1,5 +1,7 @@
+{% load static %}
 <html>
   <head>
+    <link rel="stylesheet" href="{% static 'css/fifa.css' %}">
     <meta charset="UTF-8">
     <title>FIFAクイズ</title>
   </head>
@@ -7,42 +9,92 @@
   <body>
     <h1>FIFAワールドカップクイズ</h1>
     <hr>
-    <h2>問題</h2>
-    <div id="text_q"></div>
-    <h2>選択</h2>
-    <div id="text_s">【<a href="javascript:anser(1)"></a>】【<a href="javascript:anser(2)"></a>】【<a href="javascript:anser(3)"></a>】</div>
-    <h2>解答</h2>
-    <div id="text_a"></div>
+    <h2>レベル選択</h2>
+    <span class="square_btn" type="button" onClick="document.all.item('moji1').style.visibility='visible';q=qa;setReady(q)"><a href="#" class="bt-samp">初級</a></span>
+    <span class="square_btn" type="button" onClick="document.all.item('moji1').style.visibility='visible';q=qb;setReady(q)"><a href="#" class="bt-samp">中級</a></span>
+    <span class="square_btn" type="button" onClick="document.all.item('moji1').style.visibility='visible';q=qc;setReady(q)"><a href="#" class="bt-samp">上級</a></span>
+
+    <div ID="moji1" style="visibility:hidden">
+      <h2>問題</h2>
+      <div id="text_q"></div>
+      <div id="image"></div>
+      <h2>選択</h2>
+      <div id="text_s">【<a href="javascript:anser(1)"></a>】【<a href="javascript:anser(2)"></a>】【<a href="javascript:anser(3)"></a>】</div>
+      <h2>解答</h2>
+      <div id="text_a"></div>
+    </div>
 
     <script type="text/javascript">
       qa = new Array();
-      qa[0] = ["2018年FIFAワールドカップの優勝国は？","ドイツ","スペイン","フランス",3];
-      qa[1] = ["日本の結果は？","予選敗退","ベスト16","ベスト8",2];
-      qa[2] = ["日本が唯一勝利したチームは？","コロンビア","セネガル","ポーランド",1];
-      qa[3] = ["日本代表の監督は？","ハリルホジッチ","西野","本田",2];
-      qa[4] = ["長友佑都の奥さんは？","堀北真希","平愛梨","北川景子",2];
-      qa[5] = ["この中で決勝トーナメントに進めなかったチームは？","アルゼンチン","ポルトガル","ドイツ",3];
-      qa[6] = ["今大会初めて導入された、大事な場面で映像を使って判定するシステムの通称は？","VAR","VDP","VHY",1];
-      qa[7] = ["2018年の開催国は？","ブラジル","ロシア","アメリカ",2];
-      qa[8] = ["2022年の開催国は？","カタール","シンガポール","中国",1];
-      qa[9] = ["大会後に代表引退を表明していない選手は？","本田圭佑","長友佑都","長谷部誠",2];
+      qa[0] = ["2018年FIFAワールドカップの優勝国は？","ドイツ","スペイン","フランス",3,0,""];
+      qa[1] = ["日本の結果は？","予選敗退","ベスト16","ベスト8",2,0,""];
+      qa[2] = ["日本が唯一勝利したチームは？","コロンビア","セネガル","ポーランド",1,0,""];
+      qa[3] = ["MVPに輝いた下の選手の名前は?","ハリルホジッチ","モドリッチ","ラキティッチ",2,1,"https://www.soccer-king.jp/wp-content/uploads/2018/03/GettyImages-914658080-800x533.jpg"];
+      qa[4] = ["長友佑都の奥さんは？","堀北真希","平愛梨","北川景子",2,0,""];
+      qa[5] = ["この中で決勝トーナメントに進めなかったチームは？","アルゼンチン","ポルトガル","ドイツ",3,0,""];
+      qa[6] = ["今大会初めて導入された、大事な場面で映像を使って判定するシステムの通称は？","VAR","VDP","VHY",1,0,""];
+      qa[7] = ["2018年の開催国は？","ブラジル","ロシア","アメリカ",2,0,""];
+      qa[8] = ["2022年の開催国は？","カタール","シンガポール","中国",1,0,""];
+      qa[9] = ["大会後に代表引退を表明していない選手は？","本田圭佑","長友佑都","長谷部誠",2,0,""];
+
+      qb = new Array();
+      qb[0] = ["2018年FIFAワールドカップの得点王は？","ケイン","メッシ","エムバベ",1,0,""];
+      qb[1] = ["このユニフォームの国は？","ロシア","ポルトガル","エジプト",3,1,"https://1.bp.blogspot.com/-WOzJh5o7LCY/WgCcI1dK3QI/AAAAAAAAvd0/8EmzEuy8mQEatxnTHWppHhRDcF72DZeVQCLcBGAs/s1600/egypt-national-2018-jersey-home-adidas-01-o.jpg"];
+      qb[2] = ["日本の予選通過の決め手は？","フェアプレイ数","得失点","3位の直接対決の結果",1,0,""];
+      qb[3] = ["日本の他に大会間近で監督を解任した国は？","クロアチア","スペイン","韓国",2,0,""];
+      qb[4] = ["ロシアW杯時点のエムバペの年齢は？","18歳","19歳","20歳",2,0,""];
+      qb[5] = ["日本代表でバルセロナとレアルマドリードから得点を取った選手は？","香川真司","柴崎岳","大迫勇也",2,0,""];
+      qb[6] = ["代表引退を決意したイニエスタのクラブ先は？","ヴィッセル神戸","サガン鳥栖","セレッソ大阪",1,0,""];
+      qb[7] = ["日本vsベルギーでのマンオブザマッチに選ばれた選手は？","アザール","乾貴士","ルカク",2,0,""];
+      qb[8] = ["2026年の3カ国開催に伴い変更される点は？","出場国数","登録人数","地域予選の構成",1,0,""];
+      qb[9] = ["日本代表が試合外でも話題になった理由は？","監督と選手の仲の良さ","ロッカールームの清潔さ","ファンサービス",2,0,""];
+
+      qc = new Array();
+      qc[0] = ["日本代表ユニフォームのブランドは？","ナイキ","アディダス","アンブロ",2,0,""];
+      qc[1] = ["ゴール数が最も多い国は？","フランス","イングランド","ベルギー",3,0,""];
+      qc[2] = ["日本と一緒に通過したコロンビアのイングランド戦での結果は？","3-2","1-1","2-1",2,0,""];
+      qc[3] = ["本田圭佑が下の名前を知らなかった選手は？","槙野智章","柴崎岳","昌子源",1,0,""];
+      qc[4] = ["本田圭佑の背番号は？","4","7","11",1,0,""];
+      qc[5] = ["今大会優勝国であるフランスは何年ぶりの優勝か？","16年","20年","24年",2,0,""];
+      qc[6] = ["ドイツ代表を差別理由に引退宣言した選手は？","エジル","ミュラー","クロース",1,0,""];
+      qc[7] = ["W杯時点での日本のFIFAランクは？","58位","61位","63位",2,0,""];
+      qc[8] = ["写真の日本代表のユニフォームはいつの？","2002","2006","2010",2,1,"https://wing-auctions.c.yimg.jp/sim?furl=auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0405/users/d5ba8d5eec789e321dc965fd5a4ba5f2ebd6ba7d/i-img600x600-1526301782f2mbgw344912.jpg&dc=1&sr.fs=20000"];
+      qc[9] = ["2018年FIFAワールドカップのMVPは？","エムバペ","アザール","モドリッチ",3,0,""];
 
       q_sel = 3;
-      setReady();
+      q_max = 10;
+
+      function shuffle(array) {
+        var n = array.length, t, i;
+        while (n) {
+          i = Math.floor(Math.random() * n--);
+          t = array[n];
+          array[n] = array[i];
+          array[i] = t;
+        }
+        return array;
+      }
 
       function setReady() {
         count = 0;
         ansers = new Array();
+        q = shuffle(q);
         quiz();
         document.getElementById("text_a").innerHTML = "";
       }
 
       function quiz() {
-        var s, n;
-        document.getElementById("text_q").innerHTML = (count + 1) + "問目：" + qa[count][0];
+        var s, n, i;
+        document.getElementById("text_q").innerHTML = "第" + (count + 1) + "問<br><br>" + q[count][0];
+        if (q[count][5] == 1) {
+          i = '<img src=' + q[count][6] + ' alt="サンプル画像">';
+          document.getElementById('image').innerHTML = i;
+        } else {
+          document.getElementById('image').innerHTML = "";
+        }
         s = "";
         for (n=1; n<=q_sel; n++) {
-          s += "【<a href='javascript:anser(" + n + ")'>" + n + "：" + qa[count][n] + "</a>】";
+          s += "【<a href='javascript:anser(" + n + ")'>" + n + "：" + q[count][n] + "</a>】";
         }
         document.getElementById("text_s").innerHTML = s;
       }
@@ -50,31 +102,34 @@
       function anser(num) {
         var s;
         s = (count + 1) + "問目：";
-        if (num == qa[count][q_sel + 1]) {
+        if (num == q[count][q_sel+1]) {
           ansers[count] = "○";
+          s += ansers[count] + q[count][num];
         } else {
           ansers[count] = "×";
+          s += ansers[count] + q[count][num];
+          s += "<br>正解は..." + q[count][q[count][q_sel+1]];
         }
-        s += ansers[count] + qa[count][num];
         document.getElementById("text_a").innerHTML = s;
 
         count++;
-        if (count < qa.length) {
+        if (count < q_max) {
           quiz();
         } else {
-          s = "<table border='2'><caption>成績発表</caption>";
+          s = "<table border='2' align='center'><caption>成績発表</caption>";
           s += "<tr><th>問題</th>";
-          for (n=0; n<qa.length; n++) {
+          for (n=0; n<q.length; n++) {
             s += "<th>" + (n+1) + "</th>";
           }
           s += "</tr>";
           s += "<tr><th>成績</th>";
-          for (n=0; n<qa.length; n++) {
+          for (n=0; n<q.length; n++) {
             s += "<td>" + ansers[n] + "</td>";
           }
           s += "</tr>";
           s += "</table>";
           document.getElementById("text_q").innerHTML = s;
+          document.getElementById("img").innerHTML = s;
           s = "【<a href='javascript:setReady()'>同じ問題を最初から</a>】";
           document.getElementById("text_s").innerHTML = s;
         }

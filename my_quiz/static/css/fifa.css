@@ -1,0 +1,77 @@
+h1{
+  font-size: 20px;
+  color :blue;
+}
+h2{
+  color: white;
+}
+body{
+  background: #ffffff;
+  width: 600px;
+  height: auto;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #cccccc;
+  margin: 30px auto;
+  background-image: url(../demo/background.jpg);
+  -moz-background-size:cover;
+  background-size:cover;
+}
+
+span {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+}
+
+a.bt-samp,
+a.bt-samp:hover,
+a.bt-samp:visited{
+  display: block;
+  height: 28px;
+  width: 117px;
+  padding-left:1px;
+  text-decoration: none;
+  line-height: 30px;
+  text-align: center;
+  color: #7d8383;
+  text-shadow: 0px 1px 0px #fafafa;
+  background: #fbfaf4;
+  background: -moz-linear-gradient(top,  #fbfaf4,  #ece8e6);
+  background: -o-linear-gradient(top,  #fbfaf4,  #ece8e6);
+  background: -ms-linear-gradient(top,  #fbfaf4,  #ece8e6);
+  background: linear-gradient(top,  #fbfaf4,  #ece8e6);
+  border: 1px solid #dcd9d8;
+  border-bottom: 1px solid #c1c1bd;
+  -webkit-box-shadow:  0 0 1px #c7c5c1;
+  -moz-box-shadow:  0 0 1px #c7c5c1;
+  box-shadow:  0 0 1px #c7c5c1;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+}
+
+a.bt-samp:hover { /*マウスホバー時*/
+  color:#9a9f9f;
+  background: #fbfbf9;
+}
+
+a.bt-samp:active{  /* ボタンを押したとき */
+  background:#ece8e4;
+  border: none;
+  box-shadow:  0 1px 1px #cccbc9, inset 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+img{
+   max-width: 300px;
+   height: auto;
+}
