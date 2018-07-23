@@ -6,3 +6,6 @@ def appmain(request):
 
 def fifamain(request):
     return render(request, 'quiz/fifa.html', {})
+
+def flagmain(request):
+    return render(request, 'quiz/flag.html', {})
