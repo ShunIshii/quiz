@@ -8,19 +8,20 @@
 
   <body>
     <h1>FIFAワールドカップクイズ</h1>
-    <input type="button" onclick="location.href='../quiz'"value="クイズ選択へ戻る">
+    <a href="../quiz" class="square_btn">他のクイズ</a>
     <hr>
     <h2>レベル選択</h2>
-    <span class="square_btn" type="button" onClick="document.all.item('moji1').style.visibility='visible';q=qa;setReady(q)"><a href="#" class="bt-samp">初級</a></span>
-    <span class="square_btn" type="button" onClick="document.all.item('moji1').style.visibility='visible';q=qb;setReady(q)"><a href="#" class="bt-samp">中級</a></span>
-    <span class="square_btn" type="button" onClick="document.all.item('moji1').style.visibility='visible';q=qc;setReady(q)"><a href="#" class="bt-samp">上級</a></span>
-
-    <div ID="moji1" style="visibility:hidden">
+    <span type="button" onClick="document.all.item('moji1').style.visibility='visible';q=qa;setReady(q)"><a href="#" class="square_btn">初級</a></span>
+    <span type="button" onClick="document.all.item('moji1').style.visibility='visible';q=qb;setReady(q)"><a href="#" class="square_btn">中級</a></span>
+    <span type="button" onClick="document.all.item('moji1').style.visibility='visible';q=qc;setReady(q)"><a href="#" class="square_btn">上級</a></span>
+    <hr>
+    <div id="moji1" style="visibility:hidden">
       <h2>問題</h2>
-      <div id="text_q"></div>
+      <div id="text_q_num"></div>
+      <strong><font size="5"><div id="text_q"></div></font></strong>
       <div id="image"></div>
       <h2>選択</h2>
-      <div id="text_s">【<a href="javascript:anser(1)"></a>】【<a href="javascript:anser(2)"></a>】【<a href="javascript:anser(3)"></a>】</div>
+      <div id="text_s"></div>
       <h2>解答</h2>
       <div id="text_a"></div>
     </div>
@@ -86,7 +87,8 @@
 
       function quiz() {
         var s, n, i;
-        document.getElementById("text_q").innerHTML = "第" + (count + 1) + "問<br><br>" + q[count][0];
+        document.getElementById("text_q_num").innerHTML = "第" + (count + 1) + "問";
+        document.getElementById("text_q").innerHTML = q[count][0];
         if (q[count][5] == 1) {
           i = '<img src=' + q[count][6] + ' alt="サンプル画像">';
           document.getElementById('image').innerHTML = i;
@@ -95,7 +97,7 @@
         }
         s = "";
         for (n=1; n<=q_sel; n++) {
-          s += "【<a href='javascript:anser(" + n + ")'>" + n + "：" + q[count][n] + "</a>】";
+          s += "<a href='javascript:anser(" + n + ")' class='square_btn'> " + q[count][n] + "</a>\n";
         }
         document.getElementById("text_s").innerHTML = s;
       }
@@ -130,8 +132,10 @@
           s += "</tr>";
           s += "</table>";
           document.getElementById("text_q").innerHTML = s;
-          document.getElementById("img").innerHTML = "";
-	        s = "【<a href='javascript:setReady()'>同じ問題を最初から</a>】";
+          document.getElementById("image").innerHTML = "";
+          document.getElementById("text_q_num").innerHTML = "";
+          s = "";
+	        s += "<a href='javascript:setReady(q)' class='square_btn'>もう一度</a>";
 	        document.getElementById("text_s").innerHTML = s;
         }
       }
